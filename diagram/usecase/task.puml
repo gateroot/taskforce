@@ -1,0 +1,24 @@
+@startuml
+
+left to right direction
+
+package task {
+    (create task)
+    (list task)
+    (describe task)
+    (edit task)
+    (delete task)
+    (rotate task)
+    (mute task)
+}
+
+actor User as U
+U --> (create task)
+U --> (list task)
+U --> (describe task)
+U --> (edit task)
+U --> (delete task)
+U --> (rotate task)
+U --> (mute task)
+
+@enduml
