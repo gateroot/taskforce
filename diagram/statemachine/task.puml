@@ -1,34 +1,28 @@
 @startuml
 title Task 状態遷移図
 
-[*] -> Opened
+[*] -> Opened: Add task
 
 state Closed {
 }
 
 state Opened {
-    state Todo {
-    }
-    state Assigned {
-        state Doing
-        state Paused
-        state Completed
+    state Todo
+    state Doing
+    state Paused
+    state Completed
 
-        [*] --> Doing
-        Doing --> Paused
-        Paused --> Doing
-        Doing --> Completed
-        Completed --> Doing
-        Paused --> Completed
-        Completed --> Paused
-    }
     [*] --> Todo
-    Todo --> Assigned: member assigned
-    Assigned --> Todo: member unassigned
+    Todo --> Doing: Start
+    Doing --> Todo: Reset
+    Doing --> Paused: Stop
+    Paused --> Doing
+    Doing --> Completed: Complete
+    Completed --> Doing
 }
 
-Opened --> Closed: closed
-Closed --> Opened: reopened
+Opened --> Closed: Close
+Closed --> Opened
 Closed --> [*]
 
 @enduml

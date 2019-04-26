@@ -1,4 +1,4 @@
-package domain
+package task
 
 import (
 	"github.com/stretchr/testify/assert"
@@ -9,13 +9,17 @@ func TestChangeTaskState(t *testing.T) {
 	task := NewTask("title", "description")
 	assert.Equal(t, "TODO", task.CurrentState())
 
-	task = task.Assign("John")
-	assert.Equal(t, "ASSIGNED", task.CurrentState())
-	assert.Equal(t, "John", task.Assignee)
+	task = task.Start()
+	assert.Equal(t, "DOING", task.CurrentState())
 
-	task = task.UnAssign()
+	task = task.Pause()
+	assert.Equal(t, "PAUSED", task.CurrentState())
+
+	task = task.Complete()
+	assert.Equal(t, "COMPLETED", task.CurrentState())
+
+	task = task.Stop()
 	assert.Equal(t, "TODO", task.CurrentState())
-	assert.Equal(t, "", task.Assignee)
 
 	task = task.Close()
 	assert.Equal(t, "CLOSED", task.CurrentState())

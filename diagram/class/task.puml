@@ -1,0 +1,79 @@
+@startuml
+package "task" {
+	interface "State" as task.State {
+		+CurrentState(): string
+	}
+}
+
+
+
+package "task" {
+	class "Task" as task.Task <<V,Orchid>> {
+		+Id: string
+		+Title: string
+		+Description: string
+		-state: task.State
+		+Stop(): task.Task
+		+Start(): task.Task
+		+Pause(): task.Task
+		+Complete(): task.Task
+		+Close(): task.Task
+		+CurrentState(): string
+	}
+}
+
+	task.Task --> task.State
+
+	task.Task ..> task.Task : <<return>> 
+	task.Task ..> task.Task : <<return>> 
+	task.Task ..> task.Task : <<return>> 
+	task.Task ..> task.Task : <<return>> 
+	task.Task ..> task.Task : <<return>> 
+
+package "task" {
+	class "stateClosed" as task.stateClosed <<V,Orchid>> {
+		+CurrentState(): string
+	}
+}
+
+
+
+package "task" {
+	class "stateCompleted" as task.stateCompleted <<V,Orchid>> {
+		+CurrentState(): string
+	}
+}
+
+
+
+package "task" {
+	class "stateDoing" as task.stateDoing <<V,Orchid>> {
+		+CurrentState(): string
+	}
+}
+
+
+
+package "task" {
+	class "statePaused" as task.statePaused <<V,Orchid>> {
+		+CurrentState(): string
+	}
+}
+
+
+
+package "task" {
+	class "stateTodo" as task.stateTodo <<V,Orchid>> {
+		+CurrentState(): string
+	}
+}
+
+
+
+	task.Task -up-|> task.State
+	task.stateClosed -up-|> task.State
+	task.stateCompleted -up-|> task.State
+	task.stateDoing -up-|> task.State
+	task.statePaused -up-|> task.State
+	task.stateTodo -up-|> task.State
+@enduml
