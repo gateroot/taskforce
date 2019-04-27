@@ -9,15 +9,15 @@ package "task" {
 
 package "task" {
 	class "Task" as task.Task <<V,Orchid>> {
-		+Id: string
+		-id: int
 		+Title: string
 		+Description: string
 		-state: task.State
-		+Stop(): task.Task
-		+Start(): task.Task
-		+Pause(): task.Task
-		+Complete(): task.Task
-		+Close(): task.Task
+		+Stop(): *task.Task
+		+Start(): *task.Task
+		+Pause(): *task.Task
+		+Complete(): *task.Task
+		+Close(): *task.Task
 		+CurrentState(): string
 	}
 }
