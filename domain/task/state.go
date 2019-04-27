@@ -1,35 +1,35 @@
 package task
 
 type State interface {
-	CurrentState() string
+	String() string
 }
 
 type stateTodo struct{}
 
-func (s stateTodo) CurrentState() string {
+func (s stateTodo) String() string {
 	return "TODO"
 }
 
 type stateDoing struct{}
 
-func (s stateDoing) CurrentState() string {
+func (s stateDoing) String() string {
 	return "DOING"
 }
 
 type statePaused struct{}
 
-func (s statePaused) CurrentState() string {
+func (s statePaused) String() string {
 	return "PAUSED"
 }
 
 type stateCompleted struct{}
 
-func (s stateCompleted) CurrentState() string {
+func (s stateCompleted) String() string {
 	return "COMPLETED"
 }
 
 type stateClosed struct{}
 
-func (s stateClosed) CurrentState() string {
+func (s stateClosed) String() string {
 	return "CLOSED"
 }

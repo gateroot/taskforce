@@ -1,47 +1,33 @@
 package task
 
-type Task struct {
+type Task interface {
+	GetTitle() string
+	GetDescription() string
+	GetState() State
+	setState(state State) Task
+}
+
+type task struct {
 	id          int
-	Title       string
-	Description string
+	title       string
+	description string
 	state       State
 }
 
-func NewTask(title, description string) *Task {
-	return &Task{
-		// TODO: assign unique ID
-		id:          1,
-		Title:       title,
-		Description: description,
-		state:       stateTodo{},
-	}
+func (t task) GetTitle() string {
+	return t.title
 }
 
-func (t *Task) Stop() *Task {
-	t.state = stateTodo{}
+func (t task) GetDescription() string {
+	return t.description
+}
+
+func (t task) GetState() State {
+	return t.state
+}
+
+func (t task) setState(state State) Task {
+	t.state = state
 	return t
 }
 
-func (t *Task) Start() *Task {
-	t.state = stateDoing{}
-	return t
-}
-
-func (t *Task) Pause() *Task {
-	t.state = statePaused{}
-	return t
-}
-
-func (t *Task) Complete() *Task {
-	t.state = stateCompleted{}
-	return t
-}
-
-func (t *Task) Close() *Task {
-	t.state = stateClosed{}
-	return t
-}
-
-func (t *Task) CurrentState() string {
-	return t.state.CurrentState()
-}
