@@ -1,6 +1,7 @@
 package task
 
 type Task interface {
+	GetId() int
 	GetTitle() string
 	GetDescription() string
 	GetState() State
@@ -12,6 +13,10 @@ type task struct {
 	title       string
 	description string
 	state       State
+}
+
+func (t task) GetId() int {
+	return t.id
 }
 
 func (t task) GetTitle() string {
@@ -30,4 +35,3 @@ func (t task) setState(state State) Task {
 	t.state = state
 	return t
 }
-

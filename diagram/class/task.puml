@@ -3,6 +3,7 @@ package "task" {
 	interface "Factory" as task.Factory {
 		+Close(task: task.Task): task.Task
 		+Complete(task: task.Task): task.Task
+		+GetStateFactory(): task.StateFactory
 		+New(id: int, title: string, description: string, state: task.State): task.Task
 		+Pause(task: task.Task): task.Task
 		+Start(task: task.Task): task.Task
@@ -15,6 +16,7 @@ package "task" {
 	task.Factory ..> task.Task : <<return>> 
 	task.Factory ..> task.Task : <<use>> 
 	task.Factory ..> task.Task : <<return>> 
+	task.Factory ..> task.StateFactory : <<return>> 
 	task.Factory ..> task.State : <<use>> 
 	task.Factory ..> task.Task : <<return>> 
 	task.Factory ..> task.Task : <<use>> 
@@ -52,6 +54,7 @@ package "task" {
 package "task" {
 	interface "Task" as task.Task {
 		+GetDescription(): string
+		+GetId(): int
 		+GetState(): task.State
 		+GetTitle(): string
 		-setState(state: task.State): task.Task
@@ -124,6 +127,7 @@ package "task" {
 		-title: string
 		-description: string
 		-state: task.State
+		+GetId(): int
 		+GetTitle(): string
 		+GetDescription(): string
 		+GetState(): task.State
@@ -144,6 +148,7 @@ package "task" {
 		+Pause(task: task.Task): task.Task
 		+Complete(task: task.Task): task.Task
 		+Close(task: task.Task): task.Task
+		+GetStateFactory(): task.StateFactory
 	}
 }
 
@@ -161,6 +166,7 @@ package "task" {
 	task.taskFactory ..> task.Task : <<return>> 
 	task.taskFactory ..> task.Task : <<use>> 
 	task.taskFactory ..> task.Task : <<return>> 
+	task.taskFactory ..> task.StateFactory : <<return>> 
 
 	task.stateClosed -up-|> task.State
 	task.stateCompleted -up-|> task.State

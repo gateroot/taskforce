@@ -7,6 +7,7 @@ type Factory interface {
 	Pause(task Task) Task
 	Complete(task Task) Task
 	Close(task Task) Task
+	GetStateFactory() StateFactory
 }
 
 type taskFactory struct {
@@ -52,4 +53,8 @@ func (tf taskFactory) Complete(task Task) Task {
 func (tf taskFactory) Close(task Task) Task {
 	t := task.setState(tf.stateFactory.Closed())
 	return t
+}
+
+func (tf taskFactory) GetStateFactory() StateFactory {
+	return stateFactory{}
 }
