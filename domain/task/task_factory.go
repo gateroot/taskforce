@@ -15,12 +15,12 @@ type taskFactory struct {
 }
 
 func NewTaskFactory(stateFactory StateFactory) Factory {
-	return taskFactory{
+	return &taskFactory{
 		stateFactory,
 	}
 }
 
-func (tf taskFactory) New(id int, title, description string, state State) Task {
+func (tf *taskFactory) New(id int, title, description string, state State) Task {
 	var task Task = &task{
 		id:          id,
 		title:       title,
@@ -30,31 +30,31 @@ func (tf taskFactory) New(id int, title, description string, state State) Task {
 	return task
 }
 
-func (tf taskFactory) Start(task Task) Task {
-	t := task.setState(tf.stateFactory.Doing())
-	return t
+func (tf *taskFactory) Start(task Task) Task {
+	task.setState(tf.stateFactory.Doing())
+	return task
 }
 
-func (tf taskFactory) Stop(task Task) Task {
-	t := task.setState(tf.stateFactory.Todo())
-	return t
+func (tf *taskFactory) Stop(task Task) Task {
+	task.setState(tf.stateFactory.Todo())
+	return task
 }
 
-func (tf taskFactory) Pause(task Task) Task {
-	t := task.setState(tf.stateFactory.Paused())
-	return t
+func (tf *taskFactory) Pause(task Task) Task {
+	task.setState(tf.stateFactory.Paused())
+	return task
 }
 
-func (tf taskFactory) Complete(task Task) Task {
-	t := task.setState(tf.stateFactory.Completed())
-	return t
+func (tf *taskFactory) Complete(task Task) Task {
+	task.setState(tf.stateFactory.Completed())
+	return task
 }
 
-func (tf taskFactory) Close(task Task) Task {
-	t := task.setState(tf.stateFactory.Closed())
-	return t
+func (tf *taskFactory) Close(task Task) Task {
+	task.setState(tf.stateFactory.Closed())
+	return task
 }
 
-func (tf taskFactory) GetStateFactory() StateFactory {
-	return stateFactory{}
+func (tf *taskFactory) GetStateFactory() StateFactory {
+	return tf.stateFactory
 }

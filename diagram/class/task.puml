@@ -27,6 +27,24 @@ package "task" {
 	task.Factory ..> task.Task : <<return>> 
 
 package "task" {
+	class "MockTask" as task.MockTask <<E,#FFCC00>> {
+		+Id: int
+		+Title: string
+		+Description: string
+		+State: task.State
+		+GetId(): int
+		+GetTitle(): string
+		+GetDescription(): string
+		+GetState(): task.State
+		-setState(state: task.State)
+	}
+}
+
+	task.MockTask --> task.State
+
+	task.MockTask ..> task.State : <<return>> 
+
+package "task" {
 	interface "State" as task.State {
 		+String(): string
 	}
@@ -57,7 +75,7 @@ package "task" {
 		+GetId(): int
 		+GetState(): task.State
 		+GetTitle(): string
-		-setState(state: task.State): task.Task
+		-setState(state: task.State)
 	}
 }
 
@@ -122,7 +140,7 @@ package "task" {
 
 
 package "task" {
-	class "task" as task.task <<V,Orchid>> {
+	class "task" as task.task <<E,#FFCC00>> {
 		-id: int
 		-title: string
 		-description: string
@@ -131,7 +149,7 @@ package "task" {
 		+GetTitle(): string
 		+GetDescription(): string
 		+GetState(): task.State
-		-setState(state: task.State): task.Task
+		-setState(state: task.State)
 	}
 }
 
@@ -168,6 +186,7 @@ package "task" {
 	task.taskFactory ..> task.Task : <<return>> 
 	task.taskFactory ..> task.StateFactory : <<return>> 
 
+	task.MockTask -up-|> task.Task
 	task.stateClosed -up-|> task.State
 	task.stateCompleted -up-|> task.State
 	task.stateDoing -up-|> task.State

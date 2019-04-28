@@ -5,7 +5,7 @@ type Task interface {
 	GetTitle() string
 	GetDescription() string
 	GetState() State
-	setState(state State) Task
+	setState(state State)
 }
 
 type task struct {
@@ -15,23 +15,22 @@ type task struct {
 	state       State
 }
 
-func (t task) GetId() int {
+func (t *task) GetId() int {
 	return t.id
 }
 
-func (t task) GetTitle() string {
+func (t *task) GetTitle() string {
 	return t.title
 }
 
-func (t task) GetDescription() string {
+func (t *task) GetDescription() string {
 	return t.description
 }
 
-func (t task) GetState() State {
+func (t *task) GetState() State {
 	return t.state
 }
 
-func (t task) setState(state State) Task {
+func (t *task) setState(state State) {
 	t.state = state
-	return t
 }

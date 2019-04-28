@@ -11,25 +11,25 @@ type StateFactory interface {
 type stateFactory struct{}
 
 func NewStateFactory() StateFactory {
-	return stateFactory{}
+	return &stateFactory{}
 }
 
-func (sf stateFactory) Todo() State {
+func (sf *stateFactory) Todo() State {
 	return stateTodo{}
 }
 
-func (sf stateFactory) Doing() State {
+func (sf *stateFactory) Doing() State {
 	return stateDoing{}
 }
 
-func (sf stateFactory) Paused() State {
+func (sf *stateFactory) Paused() State {
 	return statePaused{}
 }
 
-func (sf stateFactory) Completed() State {
+func (sf *stateFactory) Completed() State {
 	return stateCompleted{}
 }
 
-func (sf stateFactory) Closed() State {
+func (sf *stateFactory) Closed() State {
 	return stateClosed{}
 }
