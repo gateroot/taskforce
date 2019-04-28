@@ -15,7 +15,8 @@ type SqlTaskGateway struct {
 func (gw *SqlTaskGateway) Create(title, description string) (int, error) {
 	query := fmt.Sprintf(
 		`INSERT INTO TASKS (title, description, state) VALUES ("%s", "%s", "TODO")`, title, description)
-	return gw.repository.Create(query)
+	id, err := gw.repository.Create(query)
+	return int(id), err
 }
 
 func (gw *SqlTaskGateway) Read(taskId int) (*domain.Task, error) {

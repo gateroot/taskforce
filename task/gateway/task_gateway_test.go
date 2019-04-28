@@ -13,7 +13,7 @@ func TestSqlTaskGateway_Create(t *testing.T) {
 	taskRepo := mocks.Repository{}
 	taskRepo.On("Create",
 		`INSERT INTO TASKS (title, description, state) VALUES ("title", "description", "TODO")`,
-	).Return(1, nil)
+	).Return(int64(1), nil)
 	gw := SqlTaskGateway{&taskRepo, domain.NewTaskFactory(domain.NewStateFactory())}
 	id, err := gw.Create("title", "description")
 	assert.NoError(t, err)

@@ -11,14 +11,14 @@ type Repository struct {
 }
 
 // Create provides a mock function with given fields: query
-func (_m *Repository) Create(query string) (int, error) {
+func (_m *Repository) Create(query string) (int64, error) {
 	ret := _m.Called(query)
 
-	var r0 int
-	if rf, ok := ret.Get(0).(func(string) int); ok {
+	var r0 int64
+	if rf, ok := ret.Get(0).(func(string) int64); ok {
 		r0 = rf(query)
 	} else {
-		r0 = ret.Get(0).(int)
+		r0 = ret.Get(0).(int64)
 	}
 
 	var r1 error

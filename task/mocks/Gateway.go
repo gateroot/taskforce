@@ -46,15 +46,15 @@ func (_m *Gateway) Delete(taskId int) error {
 }
 
 // Read provides a mock function with given fields: taskId
-func (_m *Gateway) Read(taskId int) (*domaintask.Task, error) {
+func (_m *Gateway) Read(taskId int) (domaintask.Task, error) {
 	ret := _m.Called(taskId)
 
-	var r0 *domaintask.Task
-	if rf, ok := ret.Get(0).(func(int) *domaintask.Task); ok {
+	var r0 domaintask.Task
+	if rf, ok := ret.Get(0).(func(int) domaintask.Task); ok {
 		r0 = rf(taskId)
 	} else {
 		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*domaintask.Task)
+			r0 = ret.Get(0).(domaintask.Task)
 		}
 	}
 
