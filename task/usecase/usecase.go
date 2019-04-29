@@ -13,6 +13,10 @@ type TaskUsecase struct {
 	factory domain.Factory
 }
 
+func NewTaskUsecase(gateway task.Gateway, factory domain.Factory) task.Usecase {
+	return &TaskUsecase{gateway, factory}
+}
+
 func (uc *TaskUsecase) New(title, description string) error {
 	id, err := uc.gateway.Create(title, description)
 	if err != nil {
@@ -50,6 +54,20 @@ func (uc *TaskUsecase) Stop(taskId int) error {
 	return nil
 }
 
+func (uc *TaskUsecase) Pause(taskId int) error {
+	t, err := uc.gateway.Read(taskId)
+	if err != nil {
+		return errors.New(fmt.Sprintf("pause task failed: %v", err))
+	}
+	t = uc.factory.Pause(t)
+	err = uc.gateway.Update(t)
+	if err != nil {
+		return errors.New(fmt.Sprintf("update task failed: %v", err))
+	}
+	log.Print("paused task successfully")
+	return nil
+}
+
 func (uc *TaskUsecase) Complete(taskId int) error {
 	t, err := uc.gateway.Read(taskId)
 	if err != nil {
@@ -75,5 +93,14 @@ func (uc *TaskUsecase) Close(taskId int) error {
 		return errors.New(fmt.Sprintf("update task failed: %v", err))
 	}
 	log.Print("updated task successfully")
+	return nil
+}
+
+func (uc *TaskUsecase) Delete(taskId int) error {
+	err := uc.gateway.Delete(taskId)
+	if err != nil {
+		return errors.New(fmt.Sprintf("delete task failed: %v", err))
+	}
+	log.Printf("deleted task successfully (id: %d)", taskId)
 	return nil
 }

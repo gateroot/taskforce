@@ -45,16 +45,16 @@ func (_m *Repository) Delete(query string) error {
 	return r0
 }
 
-// Read provides a mock function with given fields: query
-func (_m *Repository) Read(query string) (task.Scanner, error) {
+// ReadRow provides a mock function with given fields: query
+func (_m *Repository) ReadRow(query string) (task.Row, error) {
 	ret := _m.Called(query)
 
-	var r0 task.Scanner
-	if rf, ok := ret.Get(0).(func(string) task.Scanner); ok {
+	var r0 task.Row
+	if rf, ok := ret.Get(0).(func(string) task.Row); ok {
 		r0 = rf(query)
 	} else {
 		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(task.Scanner)
+			r0 = ret.Get(0).(task.Row)
 		}
 	}
 

@@ -45,7 +45,7 @@ func (_m *Gateway) Delete(taskId int) error {
 	return r0
 }
 
-// Read provides a mock function with given fields: taskId
+// ReadRow provides a mock function with given fields: taskId
 func (_m *Gateway) Read(taskId int) (domaintask.Task, error) {
 	ret := _m.Called(taskId)
 

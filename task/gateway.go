@@ -10,3 +10,8 @@ type Gateway interface {
 	Update(task domain.Task) error
 	Delete(taskId int) error
 }
+
+type ViewGateway interface {
+	Get(taskId int) (domain.Task, error)
+	List() ([]domain.Task, error)
+}

@@ -22,7 +22,7 @@ func TestTaskUsecase_Start(t *testing.T) {
 	uc := TaskUsecase{gw, task.NewTaskFactory(task.NewStateFactory())}
 	sf := task.NewStateFactory()
 
-	gw.On("Read", 1).Return(&task.MockTask{
+	gw.On("ReadRow", 1).Return(&task.MockTask{
 		Id:          1,
 		Title:       "title",
 		Description: "description",
@@ -51,7 +51,7 @@ func TestTaskUsecase_Stop(t *testing.T) {
 	uc := TaskUsecase{gw, task.NewTaskFactory(task.NewStateFactory())}
 	sf := task.NewStateFactory()
 
-	gw.On("Read", 1).Return(&task.MockTask{
+	gw.On("ReadRow", 1).Return(&task.MockTask{
 		Id:          1,
 		Title:       "title",
 		Description: "description",
@@ -80,7 +80,7 @@ func TestTaskUsecase_Complete(t *testing.T) {
 	uc := TaskUsecase{gw, task.NewTaskFactory(task.NewStateFactory())}
 	sf := task.NewStateFactory()
 
-	gw.On("Read", 1).Return(&task.MockTask{
+	gw.On("ReadRow", 1).Return(&task.MockTask{
 		Id:          1,
 		Title:       "title",
 		Description: "description",
@@ -109,7 +109,7 @@ func TestTaskUsecase_Close(t *testing.T) {
 	uc := TaskUsecase{gw, task.NewTaskFactory(task.NewStateFactory())}
 	sf := task.NewStateFactory()
 
-	gw.On("Read", 1).Return(&task.MockTask{
+	gw.On("ReadRow", 1).Return(&task.MockTask{
 		Id:          1,
 		Title:       "title",
 		Description: "description",

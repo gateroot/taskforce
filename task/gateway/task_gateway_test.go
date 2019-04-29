@@ -41,7 +41,7 @@ func TestSqlTaskGateway_Read(t *testing.T) {
 		})
 
 	taskRepo := mocks.Repository{}
-	taskRepo.On("Read", `SELECT id, title, description, state FROM TASKS WHERE id=1`).
+	taskRepo.On("ReadRow", `SELECT id, title, description, state FROM TASKS WHERE id=1`).
 		Return(rows, nil)
 
 	gw := SqlTaskGateway{&taskRepo, domain.NewTaskFactory(domain.NewStateFactory())}

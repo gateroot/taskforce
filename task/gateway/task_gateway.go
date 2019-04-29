@@ -12,6 +12,10 @@ type SqlTaskGateway struct {
 	taskFactory domain.Factory
 }
 
+func NewSqlTaskGateway(repository component.Repository, taskFactory domain.Factory) component.Gateway {
+	return &SqlTaskGateway{repository, taskFactory}
+}
+
 func (gw *SqlTaskGateway) Create(title, description string) (int, error) {
 	query := fmt.Sprintf(
 		`INSERT INTO TASKS (title, description, state) VALUES ("%s", "%s", "TODO")`, title, description)
@@ -19,9 +23,9 @@ func (gw *SqlTaskGateway) Create(title, description string) (int, error) {
 	return int(id), err
 }
 
-func (gw *SqlTaskGateway) Read(taskId int) (*domain.Task, error) {
+func (gw *SqlTaskGateway) Read(taskId int) (domain.Task, error) {
 	query := fmt.Sprintf("SELECT id, title, description, state FROM TASKS WHERE id=%d", taskId)
-	rows, err := gw.repository.Read(query)
+	rows, err := gw.repository.ReadRow(query)
 	if err != nil {
 		return nil, err
 	}
@@ -48,7 +52,7 @@ func (gw *SqlTaskGateway) Read(taskId int) (*domain.Task, error) {
 		return nil, errors.New(fmt.Sprintf(`state "%s" is not supported"`, state))
 	}
 	task := gw.taskFactory.New(id, title, description, s)
-	return &task, nil
+	return task, nil
 }
 
 func (gw *SqlTaskGateway) Update(task domain.Task) error {
