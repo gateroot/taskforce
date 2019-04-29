@@ -1,6 +1,6 @@
 package main
 
-import "taskforce/di"
+import "github.com/hiroaki-sekine/taskforce/di"
 
 func main() {
 	cmd := di.InjectCommandLineDelivery()

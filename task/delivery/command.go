@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"github.com/jessevdk/go-flags"
 	"os"
-	"taskforce/task"
+	"github.com/hiroaki-sekine/taskforce/task"
 )
 
 type AddOptions struct {

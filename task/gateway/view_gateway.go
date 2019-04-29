@@ -4,8 +4,8 @@ import (
 	"errors"
 	"fmt"
 	"log"
-	task2 "taskforce/domain/task"
-	"taskforce/task"
+	task2 "github.com/hiroaki-sekine/taskforce/domain/task"
+	"github.com/hiroaki-sekine/taskforce/task"
 )
 
 type ViewTaskGateway struct {

@@ -3,12 +3,12 @@ package di
 import (
 	"database/sql"
 	_ "github.com/mattn/go-sqlite3"
-	domain_task "taskforce/domain/task"
-	"taskforce/task"
-	"taskforce/task/delivery"
-	"taskforce/task/gateway"
-	"taskforce/task/repository"
-	"taskforce/task/usecase"
+	domain_task "github.com/hiroaki-sekine/taskforce/domain/task"
+	"github.com/hiroaki-sekine/taskforce/task"
+	"github.com/hiroaki-sekine/taskforce/task/delivery"
+	"github.com/hiroaki-sekine/taskforce/task/gateway"
+	"github.com/hiroaki-sekine/taskforce/task/repository"
+	"github.com/hiroaki-sekine/taskforce/task/usecase"
 )
 
 func InjectStateFactory() domain_task.StateFactory {

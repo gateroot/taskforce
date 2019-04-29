@@ -1,6 +1,6 @@
 package task
 
-import "taskforce/domain/task"
+import "github.com/hiroaki-sekine/taskforce/domain/task"
 
 type Usecase interface {
 	New(title, description string) error

@@ -2,7 +2,7 @@ package repository
 
 import (
 	"database/sql"
-	"taskforce/task"
+	"github.com/hiroaki-sekine/taskforce/task"
 )
 
 type Repository struct {

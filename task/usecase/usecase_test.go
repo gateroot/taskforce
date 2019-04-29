@@ -3,8 +3,8 @@ package usecase
 import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"taskforce/domain/task"
-	"taskforce/task/mocks"
+	"github.com/hiroaki-sekine/taskforce/domain/task"
+	"github.com/hiroaki-sekine/taskforce/task/mocks"
 	"testing"
 )
 

@@ -1,7 +1,7 @@
 package task
 
 import (
-	domain "taskforce/domain/task"
+	domain "github.com/hiroaki-sekine/taskforce/domain/task"
 )
 
 type Gateway interface {

@@ -1,8 +1,8 @@
 package gateway
 
 import (
-	domain "taskforce/domain/task"
-	"taskforce/task/mocks"
+	domain "github.com/hiroaki-sekine/taskforce/domain/task"
+	"github.com/hiroaki-sekine/taskforce/task/mocks"
 	"testing"
 
 	"github.com/stretchr/testify/assert"

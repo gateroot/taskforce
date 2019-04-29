@@ -4,8 +4,8 @@ import (
 	"errors"
 	"fmt"
 	"log"
-	domain "taskforce/domain/task"
-	"taskforce/task"
+	domain "github.com/hiroaki-sekine/taskforce/domain/task"
+	"github.com/hiroaki-sekine/taskforce/task"
 )
 
 type TaskUsecase struct {

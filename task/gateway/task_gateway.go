@@ -3,8 +3,8 @@ package gateway
 import (
 	"errors"
 	"fmt"
-	domain "taskforce/domain/task"
-	component "taskforce/task"
+	domain "github.com/hiroaki-sekine/taskforce/domain/task"
+	component "github.com/hiroaki-sekine/taskforce/task"
 )
 
 type SqlTaskGateway struct {
